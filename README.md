@@ -4,9 +4,11 @@ This is a complete end-to-end demo showcasing the Model Context Protocol (MCP) w
 
 
 
-![image](https://github.com/user-attachments/assets/d0ab0efd-3a36-43b3-934d-552ed17a5c30)
+![image](https://github.com/user-attachments/assets/c8039c15-2fc0-4703-a9f0-6f1bd923a856)
 
-![image](https://github.com/user-attachments/assets/4fbde9c0-f741-4400-8719-d18c13654b16)
+
+![image](https://github.com/user-attachments/assets/aa53ec6a-63b7-4189-a516-b865df27c311)
+
 
 
 ## Architecture
