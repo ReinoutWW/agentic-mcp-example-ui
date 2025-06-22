@@ -2,6 +2,7 @@ import { useState } from "react"
 import { AnimatePresence } from "framer-motion"
 import WelcomeScreen from "./components/WelcomeScreen"
 import ChatInterface from "./components/ChatInterface"
+import BackgroundElements from "./components/BackgroundElements"
 
 export default function App() {
   const [currentView, setCurrentView] = useState('welcome') // 'welcome' or 'chat'
@@ -16,12 +17,13 @@ export default function App() {
 
   return (
     <div 
-      className="min-h-screen text-white" 
+      className="min-h-screen text-white relative" 
       style={{ 
         backgroundColor: '#0a0a0a',
         color: 'rgba(255, 255, 255, 0.95)'
       }}
     >
+      <BackgroundElements />
       <AnimatePresence mode="wait">
         {currentView === 'welcome' ? (
           <WelcomeScreen key="welcome" onStart={startChat} />
