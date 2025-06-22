@@ -5,7 +5,7 @@ export default function App() {
   const [history, setHistory] = useState([])
 
   async function send() {
-    const res = await fetch("http://localhost:8000/chat", {
+    const res = await fetch("http://localhost:3000/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: msg })
