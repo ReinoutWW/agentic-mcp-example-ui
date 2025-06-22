@@ -2,6 +2,13 @@
 
 This is a complete end-to-end demo showcasing the Model Context Protocol (MCP) with three cleanly separated components:
 
+
+
+![image](https://github.com/user-attachments/assets/d0ab0efd-3a36-43b3-934d-552ed17a5c30)
+
+![image](https://github.com/user-attachments/assets/4fbde9c0-f741-4400-8719-d18c13654b16)
+
+
 ## Architecture
 
 1. **MCP Server** (`mcp-server/`) - Exposes tools over MCP protocol
