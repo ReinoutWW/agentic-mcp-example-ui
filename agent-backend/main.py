@@ -1,40 +1,45 @@
 # main.py
 import os, asyncio, uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from openai_agents.agent import Agent
-from openai_agents.llms import OpenAIChat
-from mcp.client.streamable_http import streamablehttp_client
-from mcp.client.session import ClientSession
+import agents
+from agents import Agent, Runner, set_default_openai_key
 
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
-
-# 2-line helper that returns a ready MCP client session
-async def mcp_session():
-    async with streamablehttp_client("http://mcp-server:5000/mcp") as (r, w, _):
-        async with ClientSession(r, w) as s:
-            await s.initialize()
-            yield s
+set_default_openai_key(OPENAI_API_KEY)
 
 # Define a single-shot agent
-llm = OpenAIChat(model="gpt-4o-mini", api_key=OPENAI_API_KEY)
-agent = Agent(llm, name="demo-agent")
+agent = Agent(
+    name="demo-agent",
+    instructions="You are a helpful assistant that can perform mathematical calculations. For now, just respond to math questions directly.",
+    model="gpt-4o-mini"
+)
 
-# Tell the agent about the remote MCP tool
-async def bootstrap():
-    async for session in mcp_session():
-        await agent.add_mcp_server(session)
+# Create a runner
+runner = Runner()
 
 app = FastAPI()
+
+# Add CORS middleware to allow frontend requests
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://localhost:5174"],  # Frontend URLs
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class ChatIn(BaseModel):
     message: str
 
 @app.post("/chat")
 async def chat(inp: ChatIn):
-    await bootstrap()          # guaranteed idempotent
-    result = await agent.complete(inp.message)
-    return {"reply": result.content}
+    try:
+        result = await runner.run(agent, inp.message)
+        return {"reply": result.final_output_as(str)}
+    except Exception as e:
+        return {"reply": f"Error: {str(e)}"}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000) 
+    uvicorn.run(app, host="0.0.0.0", port=3000) 
