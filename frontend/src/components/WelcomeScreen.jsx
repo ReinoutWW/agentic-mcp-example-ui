@@ -55,10 +55,12 @@ const WelcomeScreen = ({ onStart }) => {
       >
         {/* Glass container with enhanced backdrop blur */}
         <div 
-          className="relative rounded-3xl p-16 backdrop-blur-xl border border-white/20 mt-8"
+          className="relative rounded-3xl p-16 backdrop-blur-2xl border border-white/30 mt-8"
           style={{
-            background: 'rgba(255, 255, 255, 0.08)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.1)',
+            backdropFilter: 'blur(20px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(180%)'
           }}
         >
           {/* Subtle top accent */}

@@ -87,12 +87,12 @@ export default function ChatInterface({ onBack }) {
   };
 
   const suggestedQuestions = [
-    "What's 142 × 37? Show me the calculation steps",
-    "Calculate the compound interest on $5000 at 3.5% for 7 years",
-    "Find the square root of 2048 and explain the method",
-    "What's 15% of 890 plus 25% of 340?",
-    "Solve: (125 + 75) ÷ 8 × 3 - 12",
-    "Calculate how many days are in 5 years and 7 months"
+    "What's 25 + 17?",
+    "Add 142 and 37",
+    "Calculate 89 + 156",
+    "What is 234 plus 567?",
+    "Add 45 + 78 + 23",
+    "What's the sum of 99 and 101?"
   ];
 
   return (
