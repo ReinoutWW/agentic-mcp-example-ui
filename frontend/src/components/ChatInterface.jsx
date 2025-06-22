@@ -89,9 +89,9 @@ export default function ChatInterface({ onBack }) {
   const suggestedQuestions = [
     "What's 25 + 17?",
     "Add 142 and 37",
-    "Calculate 89 + 156",
+    "Reset password for user@example.com on CAMAS",
     "What is 234 plus 567?",
-    "Add 45 + 78 + 23",
+    "Reset CAMAS password for john.doe@company.com",
     "What's the sum of 99 and 101?"
   ];
 
@@ -206,7 +206,7 @@ export default function ChatInterface({ onBack }) {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask me anything... Try complex calculations."
+                placeholder="Ask me to add numbers or reset CAMAS passwords..."
                 className="w-full bg-transparent border-none outline-none text-white placeholder-white/60 resize-none py-3 px-4 rounded-xl focus:ring-2 focus:ring-purple-400/50 transition-all"
                 style={{
                   minHeight: '48px',

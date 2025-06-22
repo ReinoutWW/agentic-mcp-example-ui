@@ -99,8 +99,8 @@ const WelcomeScreen = ({ onStart }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            Experience the Model Context Protocol with our interactive AI agent. See every
-            step, tool call, and reasoning process in beautiful detail.
+            Experience the Model Context Protocol with our interactive AI agent. Ask for math calculations 
+            or password resets and see every step, tool call, and reasoning process in beautiful detail.
           </motion.p>
 
           {/* Feature cards */}
