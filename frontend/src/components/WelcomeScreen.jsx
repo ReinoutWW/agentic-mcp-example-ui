@@ -126,36 +126,95 @@ const WelcomeScreen = ({ onStart }) => {
                 title: "Transparent Communication",
                 description: "See tool calls, reasoning steps, and knowledge retrieval in action"
               }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                className="relative rounded-2xl p-6 backdrop-blur-lg border border-white/10 hover:border-white/20 transition-all duration-300"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.8 + index * 0.1, duration: 0.6 }}
-                whileHover={{ 
-                  y: -2,
-                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
-                }}
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="w-12 h-12 rounded-xl mb-4 flex items-center justify-center"
-                       style={{ background: 'rgba(168, 85, 247, 0.1)' }}>
-                    <feature.icon className="w-6 h-6 text-purple-300" />
+            ].map((feature, index) => {
+              const neonColors = [
+                { 
+                  border: 'rgba(168, 85, 247, 0.4)', 
+                  glow: 'rgba(168, 85, 247, 0.2)', 
+                  iconBg: 'rgba(168, 85, 247, 0.15)',
+                  iconColor: 'text-purple-400'
+                },
+                { 
+                  border: 'rgba(6, 182, 212, 0.4)', 
+                  glow: 'rgba(6, 182, 212, 0.2)', 
+                  iconBg: 'rgba(6, 182, 212, 0.15)',
+                  iconColor: 'text-cyan-400'
+                },
+                { 
+                  border: 'rgba(16, 185, 129, 0.4)', 
+                  glow: 'rgba(16, 185, 129, 0.2)', 
+                  iconBg: 'rgba(16, 185, 129, 0.15)',
+                  iconColor: 'text-emerald-400'
+                }
+              ];
+              const colors = neonColors[index];
+              
+              return (
+                <motion.div
+                  key={index}
+                  className="relative rounded-2xl p-6 backdrop-blur-lg transition-all duration-300"
+                  style={{
+                    background: 'rgba(0, 0, 0, 0.4)',
+                    border: `1px solid ${colors.border}`,
+                    boxShadow: `0 4px 16px rgba(0, 0, 0, 0.3), 0 0 20px ${colors.glow}, inset 0 1px 0 rgba(255, 255, 255, 0.05)`
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 + index * 0.1, duration: 0.6 }}
+                  whileHover={{ 
+                    y: -8,
+                    scale: 1.02,
+                    boxShadow: `0 12px 35px rgba(0, 0, 0, 0.5), 0 0 40px ${colors.glow}, inset 0 1px 0 rgba(255, 255, 255, 0.1)`,
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <motion.div 
+                      className="w-12 h-12 rounded-xl mb-4 flex items-center justify-center border"
+                      style={{ 
+                        background: colors.iconBg,
+                        borderColor: colors.border,
+                        boxShadow: `0 0 15px ${colors.glow}`
+                      }}
+                      whileHover={{ 
+                        scale: 1.1,
+                        rotate: 5,
+                        boxShadow: `0 0 25px ${colors.glow}`,
+                        transition: { duration: 0.2, ease: "easeOut" }
+                      }}
+                    >
+                      <motion.div
+                        whileHover={{ 
+                          scale: 1.1,
+                          transition: { duration: 0.2, ease: "easeOut" }
+                        }}
+                      >
+                        <feature.icon className={`w-6 h-6 ${colors.iconColor}`} />
+                      </motion.div>
+                    </motion.div>
+                    <motion.h3 
+                      className="text-lg font-semibold text-white mb-2"
+                      whileHover={{ 
+                        scale: 1.05,
+                        transition: { duration: 0.2, ease: "easeOut" }
+                      }}
+                    >
+                      {feature.title}
+                    </motion.h3>
+                    <motion.p 
+                      className="text-sm text-white/80 leading-relaxed"
+                      whileHover={{ 
+                        color: "rgba(255, 255, 255, 0.95)",
+                        transition: { duration: 0.2, ease: "easeOut" }
+                      }}
+                    >
+                      {feature.description}
+                    </motion.p>
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-white/70 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           {/* CTA Button */}
