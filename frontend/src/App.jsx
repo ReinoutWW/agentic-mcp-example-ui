@@ -1,29 +1,34 @@
 import { useState } from "react"
+import { AnimatePresence } from "framer-motion"
+import WelcomeScreen from "./components/WelcomeScreen"
+import ChatInterface from "./components/ChatInterface"
 
 export default function App() {
-  const [msg, setMsg] = useState("")
-  const [history, setHistory] = useState([])
+  const [currentView, setCurrentView] = useState('welcome') // 'welcome' or 'chat'
 
-  async function send() {
-    const res = await fetch("http://localhost:3000/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: msg })
-    })
-    const data = await res.json()
-    setHistory(h => [...h, ["user", msg], ["bot", data.reply]])
-    setMsg("")
+  const startChat = () => {
+    setCurrentView('chat')
+  }
+
+  const goBack = () => {
+    setCurrentView('welcome')
   }
 
   return (
-    <main className="p-4 max-w-xl mx-auto">
-      {history.map(([who, text], i) => (
-        <div key={i} className={who === "bot" ? "text-blue-700" : "text-black"}>
-          <b>{who}:</b> {text}
-        </div>
-      ))}
-      <input value={msg} onChange={e => setMsg(e.target.value)} className="border p-1 w-3/4" />
-      <button onClick={send} className="ml-2 border px-3">Send</button>
-    </main>
+    <div 
+      className="min-h-screen text-white" 
+      style={{ 
+        backgroundColor: '#0a0a0a',
+        color: 'rgba(255, 255, 255, 0.95)'
+      }}
+    >
+      <AnimatePresence mode="wait">
+        {currentView === 'welcome' ? (
+          <WelcomeScreen key="welcome" onStart={startChat} />
+        ) : (
+          <ChatInterface key="chat" onBack={goBack} />
+        )}
+      </AnimatePresence>
+    </div>
   )
 } 
