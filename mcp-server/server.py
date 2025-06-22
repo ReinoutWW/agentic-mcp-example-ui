@@ -9,5 +9,5 @@ def add(a: int, b: int) -> int:
     return a + b
 
 if __name__ == "__main__":
-    # Lightest transport for local dev: streamable HTTP on :5000
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=5000) 
+    # Lightest transport for local dev: streamable HTTP
+    mcp.run(transport="streamable-http") 
