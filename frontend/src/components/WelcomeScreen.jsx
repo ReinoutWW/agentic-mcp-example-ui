@@ -51,11 +51,11 @@ const WelcomeScreen = ({ onStart }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="max-w-4xl mx-auto text-center relative z-10"
+        className="max-w-4xl mx-auto text-center relative z-10 px-6"
       >
         {/* Glass container with enhanced backdrop blur */}
         <div 
-          className="relative rounded-3xl p-12 backdrop-blur-xl border border-white/20"
+          className="relative rounded-3xl p-16 backdrop-blur-xl border border-white/20 mt-8"
           style={{
             background: 'rgba(255, 255, 255, 0.08)',
             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
@@ -63,7 +63,7 @@ const WelcomeScreen = ({ onStart }) => {
         >
           {/* Subtle top accent */}
           <motion.div
-            className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="absolute top-4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
